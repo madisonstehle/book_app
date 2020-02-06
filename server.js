@@ -21,6 +21,13 @@ app.get('/searches/new', (request, response) => {
   // console.log(newBook);
   response.render('pages/searches/new.ejs');
 });
+const url = 'https://www.googleapis.com/books/v1/volumes?q=quilting';
+
+superagent.get(url)
+  .then(data =>{
+    console.log(data.body.items[0].volumeInfo.title);
+    
+  });
 
 // function Book(title, author) {
 //   this.title = title;
