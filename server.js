@@ -21,16 +21,9 @@ app.get('/searches/new', (request, response) => {
 });
 
 app.post('/searches', (request, response) => {
-  let searchQuery = request.query.title || request.query.author;
-  // console.log(searchQuery);
-  // console.log(request.query.title);
-  let url;
+  let searchQuery = request.body.title || request.body.author;
 
-  if (searchQuery){
-    url = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}`;
-  } else {
-    url = 'https://www.googleapis.com/books/v1/volumes?q=quilting';
-  }
+  let url = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}`;
 
   try {
     superagent.get(url)
