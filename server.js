@@ -31,17 +31,22 @@ app.post('/searches', (request, response) => {
   } else {
     url = 'https://www.googleapis.com/books/v1/volumes?q=quilting';
   }
-  
-  superagent.get(url)
-    .then(data =>{
-      let bookArray = data.body.items.map( items => {
-        let resultData = items.volumeInfo;
-        let book = new Book(resultData);
-        return book;
+
+  try {
+    superagent.get(url)
+      .then(data =>{
+        let bookArray = data.body.items.map( items => {
+          let resultData = items.volumeInfo;
+          let book = new Book(resultData);
+          return book;
+        });
+        // console.log(bookArray);
+        response.render('pages/searches/show.ejs', { books: bookArray });
       });
-      // console.log(bookArray);
-      response.render('pages/searches/show.ejs', { books: bookArray });
-    });
+  }
+  catch {
+    response.render('pages/error.ejs');
+  }
 
 });
 
