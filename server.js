@@ -45,7 +45,7 @@ app.post('/searches', (request, response) => {
 
 
 function Book(bookData) {
-  this.cover = bookData.imageLinks.smallThumbnail;
+  this.cover = bookData.imageLinks.thumbnail;
   this.title = bookData.title;
   this.author = bookData.authors;
   this.description = bookData.description;
