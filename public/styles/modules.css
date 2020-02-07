@@ -4,6 +4,30 @@ h1 {
   padding-top: 20px;
 }
 
+ul {
+  background-color: #CBF3D2;
+  width: 60%;
+  margin: auto;
+  margin-bottom: 20px;
+  outline: medium solid black;
+}
+
+li {
+  margin: auto;
+  width: 75%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#title {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+#author {
+  font-style: italic;
+}
+
 /* FORM */
 input {
   margin: 5px;
