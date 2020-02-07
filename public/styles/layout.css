@@ -6,4 +6,6 @@ header {
     background-color: #CBF3D2;
     height: 75px;
     width: 100%;
+    margin-bottom: 20px;
+    border-bottom: black solid thick;
 }

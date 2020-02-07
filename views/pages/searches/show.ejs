@@ -9,14 +9,18 @@
   <title>Results - Book App</title>
 </head>
 <body>
-  <ul>
-    <% books.forEach( book => { %>
-      <li>
-        <%= book.title %>
-        <%= book.author %>
-        <%= book.description %>
-      </li>
-    <% }) %>
-  </ul>
+  <header>
+    <h1>Here's some books:</h1>
+</header>
+  <% books.forEach( book => { %>
+    <ul>
+      <li id="title"> <%= book.title %> </li>
+      <li id="author"> <%= book.author %> </li>
+      <li id="description"> <%= book.description %> </li>
+    </ul>
+  <% }) %>
+
+  <button><a href="./searches/new">New Search</a></button>
+  <button><a href="/">Home</a></button>
 </body>
 </html>
