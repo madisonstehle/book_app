@@ -1,3 +1,9 @@
 body {
-  background-color: cornflowerblue;
+    background-color: #077187;
+}
+
+header {
+    background-color: #CBF3D2;
+    height: 75px;
+    width: 100%;
 }
