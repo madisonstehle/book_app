@@ -25,10 +25,27 @@ Actual time needed to complete: 22 minutes
 
 ### Number and name of feature: Feature 3
 
-Estimate of time needed to complete:
+Estimate of time needed to complete: 2 hours
 
-Start time: 
+Start time: 9: 15 pm, 02/05/2020
 
-Finish time:
+Finish time: 7:45 pm, 02/06/2020
 
-Actual time needed to complete: 
+Actual time needed to complete: 2:30
+### feature 4
+Estimate of time needed to complete: 10 minutes 
+
+Start time: 8:20 pm
+
+Finish time: 8:30
+
+Actual time needed to complete: 10 minutes
+
+### feature 5
+Estimate of time needed to complete: 1 hour
+
+Start time: 6:00 pm
+
+Finish time: 6:30
+
+Actual time needed to complete: 30 minutes
