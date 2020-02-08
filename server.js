@@ -5,6 +5,10 @@ const superagent = require('superagent');
 const express = require('express');
 require('dotenv').config();
 const app = express();
+const pg = require('pg');
+const client = new pg.Client(process.env.DATABASE_URL);
+
+
 
 // EJS
 app.use(express.static(__dirname + '/public'));
@@ -12,9 +16,17 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
 // ROUTES
-app.get('/', (request, response) => {
-  response.render('pages/index.ejs');
-});
+app.get('/', getBooks);
+
+function getBooks(request, response){
+  let SQL = 'SELECT * FROM libraries;';
+ return client.query(SQL)
+  .then(results => {
+    console.log(results.rows);
+    response.render('pages/index.ejs', {booklist: results.rows, bookCounts: results.rowCount})})
+
+  .catch(() => { console.log('error')});
+}
 
 app.get('/searches/new', (request, response) => {
   response.render('pages/searches/new.ejs');
@@ -62,6 +74,11 @@ function Book(bookData) {
   this.author = bookData.authors;
   this.description = bookData.description;
 }
+client.connect()
+.then(() =>{
 
-app.listen(process.env.PORT, () => console.log(`server up on ${process.env.PORT}`));
+  app.listen(process.env.PORT, () => console.log(`server up on ${process.env.PORT}`));
+
+})
+.catch(() => { console.log('error')});
 

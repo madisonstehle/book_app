@@ -14,5 +14,17 @@
     </header>
 
     <button><a href="./searches/new">Search</a></button>
+
+    <p> you have <%= bookCounts %> </p>
+
+    <% booklist.forEach( book => { %>
+        <ul>
+          <li> <img src=" <%= book.cover %>" /> </li>
+          <li id="title"> <%= book.title %> </li>
+          <li id="author"> <%= book.author %> </li>
+          <!-- <li id="description"> <%= book.description %> </li> -->
+        </ul>
+      <% }) %>
+
 </body>
 </html>
