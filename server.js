@@ -23,7 +23,7 @@ function getBooks(request, response){
  return client.query(SQL)
   .then(results => {
     console.log(results.rows);
-    response.render('pages/index.ejs', {booklist: results.rows})})
+    response.render('pages/index.ejs', {booklist: results.rows, bookCounts: results.rowCount})})
 
   .catch(() => { console.log('error')});
 }
