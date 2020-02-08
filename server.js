@@ -21,9 +21,21 @@ app.get('/searches/new', (request, response) => {
 });
 
 app.post('/searches', (request, response) => {
-  let searchQuery = request.body.title || request.body.author;
+  let searchQuery = request.body.search; // search bar
+  let title = request.body.title; // title radio
+  let author = request.body.author; // author radio
 
-  let url = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}`;
+  let url = 'https://www.googleapis.com/books/v1/volumes?q=';
+  
+  if (title) {
+    url += `+intitle:${searchQuery}`;
+    console.log(url);
+  } else if (author) {
+    url += `+inauthor:${searchQuery}`;
+    console.log(url);
+  } else {
+    response.render('pages/error.ejs');
+  }
 
   try {
     superagent.get(url)
