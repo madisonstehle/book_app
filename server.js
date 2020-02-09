@@ -8,7 +8,8 @@ const app = express();
 const pg = require('pg');
 const client = new pg.Client(process.env.DATABASE_URL);
 
-
+// GLOBAL API URL
+let url = 'https://www.googleapis.com/books/v1/volumes?q=';
 
 // EJS
 app.use(express.static(__dirname + '/public'));
@@ -18,6 +19,26 @@ app.use(express.urlencoded({ extended: true }));
 // ROUTES
 app.get('/', getBooks);
 
+app.get('/searches/new', (request, response) => {response.render('pages/searches/new.ejs');});
+
+app.post('/searches', createBookArray);
+
+app.post('/books', (request, response) => {
+  let { author, title, isbn, image_url, description} = request.body;
+  let SQL = `INSERT INTO libraries(author, title, isbn, image_url, description, bookshelf) 
+  VALUES ($1, $2, $3, $4, $5, $6)
+  RETURNING *;
+  `;
+
+  let values = [author, title, isbn, image_url, description, ''];
+
+  client.query(SQL, values)
+    .then(response.redirect('/'))
+    .catch(() => { console.log('error')});
+});
+
+
+// HELPER FUNCTIONS
 function getBooks(request, response){
   let SQL = 'SELECT * FROM libraries;';
  return client.query(SQL)
@@ -28,26 +49,23 @@ function getBooks(request, response){
   .catch(() => { console.log('error')});
 }
 
-app.get('/searches/new', (request, response) => {
-  response.render('pages/searches/new.ejs');
-});
-
-app.post('/searches', (request, response) => {
+function getURL(request, response) {
   let searchQuery = request.body.search; // search bar
   let title = request.body.title; // title radio
   let author = request.body.author; // author radio
 
-  let url = 'https://www.googleapis.com/books/v1/volumes?q=';
   
   if (title) {
-    url += `+intitle:${searchQuery}`;
-    console.log(url);
+    return url += `+intitle:${searchQuery}`;
   } else if (author) {
-    url += `+inauthor:${searchQuery}`;
-    console.log(url);
+    return url += `+inauthor:${searchQuery}`;
   } else {
     response.render('pages/error.ejs');
   }
+};
+
+function createBookArray(request, response) {
+  getURL(request, response);
 
   try {
     superagent.get(url)
@@ -64,21 +82,22 @@ app.post('/searches', (request, response) => {
   catch {
     response.render('pages/error.ejs');
   }
-
-});
-
-
-function Book(bookData) {
-  this.cover = bookData.imageLinks.thumbnail;
-  this.title = bookData.title;
-  this.author = bookData.authors;
-  this.description = bookData.description;
 }
+
+
+// CONSTRUCTOR
+function Book(bookData) {
+  this.author = bookData.authors || 'no author available';
+  this.title = bookData.title;
+  this.isbn = bookData.industryIdentifiers ? bookData.industryIdentifiers[0].identifier : 'no ISBN available';
+  this.cover = bookData.imageLinks.thumbnail;
+  this.description = bookData.description || 'no description available';
+}
+
+// LISTENER
 client.connect()
-.then(() =>{
-
-  app.listen(process.env.PORT, () => console.log(`server up on ${process.env.PORT}`));
-
-})
-.catch(() => { console.log('error')});
+  .then(() =>{
+    app.listen(process.env.PORT, () => console.log(`server up on ${process.env.PORT}`));
+  })
+  .catch(() => { console.log('error')});
 
