@@ -4,6 +4,16 @@ h1 {
   padding-top: 20px;
 }
 
+h2 {
+  font-size: 20px;
+  font-family: 'Indie Flower', cursive;
+  padding: 10px;
+  margin: 10px auto 20px auto;
+  background-color: #CBF3D2;
+  border: solid black 2px;
+  width: 25%;
+}
+
 ul {
   background-color: #CBF3D2;
   width: 60%;
@@ -19,6 +29,10 @@ li {
   padding-bottom: 5px;
 }
 
+img {
+  margin-top: 10px;
+}
+
 #title {
   font-size: 17px;
   font-weight: bold;
@@ -32,9 +46,10 @@ li {
 input {
   margin: 5px;
   padding: 5px;
-  height: 10px;
-  width: 200px;
+  height: 15px;
+  width: 20%;
   text-align: left;
+  border: solid black 2px;
 }
 
 input:hover {
@@ -43,6 +58,25 @@ input:hover {
 
 input:focus {
   border: 3px solid #CBF3D2;
+}
+
+.radio {
+  display: flex;
+  background-color: #CBF3D2;
+  width: 20%;
+  margin: 5px auto;
+  border: solid black 2px;
+  padding: 3px;
+}
+
+input[type=radio] {
+  width: 10%;
+}
+
+label {
+  height: 100%;
+  text-align: center;
+  padding-top: 3px;
 }
 
 button {
@@ -67,4 +101,8 @@ a {
 
 a:hover {
   color: white;
+}
+
+.invisible {
+  display: none;
 }
