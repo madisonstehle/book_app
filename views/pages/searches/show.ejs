@@ -21,11 +21,11 @@
       <li id="description"> <%= book.description %> </li>
 
       <form method="post" action="/books">
-        <input name="author" value="<%= book.author %>" />
-        <input name="title" value="<%= book.title %>" />
-        <input name="isbn" value="<%= book.isbn %>" />
-        <input name="image_url" value="<%= book.cover %>" />
-        <input name="description" value="<%= book.description %>" />        
+        <input class="invisible" name="author" value="<%= book.author %>" />
+        <input class="invisible" name="title" value="<%= book.title %>" />
+        <input class="invisible" name="isbn" value="<%= book.isbn %>" />
+        <input class="invisible" name="image_url" value="<%= book.cover %>" />
+        <input class="invisible" name="description" value="<%= book.description %>" />        
         <button>Save to Library</button>
       </form>
     </ul>

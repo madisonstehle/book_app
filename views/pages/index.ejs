@@ -13,13 +13,13 @@
         <h1>Welcome to Book App</h1>
     </header>
 
-    <button><a href="./searches/new">Search</a></button>
-
-    <p> you have <%= bookCounts %> </p>
+    <button><a href="./searches/new">Search for a New Book!</a></button>
+    
+    <h2>You have <%= bookCounts %> books saved!</h2>
 
     <% booklist.forEach( book => { %>
         <ul>
-            <li> <img src=" <%= book.cover %>" /> </li>
+            <li> <img src="<%= book.cover %>" /> </li>
             <li id="title"> <%= book.title %> </li>
             <li id="author"> <%= book.author %> </li>
             <!-- <li id="description"> <%= book.description %> </li> -->
