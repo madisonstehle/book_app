@@ -12,12 +12,22 @@
   <header>
     <h1>Here's some books:</h1>
 </header>
+
   <% books.forEach( book => { %>
     <ul>
       <li> <img src=" <%= book.cover %>" /> </li>
       <li id="title"> <%= book.title %> </li>
       <li id="author"> <%= book.author %> </li>
       <li id="description"> <%= book.description %> </li>
+
+      <form method="post" action="/books">
+        <input name="author" value="<%= book.author %>" />
+        <input name="title" value="<%= book.title %>" />
+        <input name="isbn" value="<%= book.isbn %>" />
+        <input name="image_url" value="<%= book.cover %>" />
+        <input name="description" value="<%= book.description %>" />        
+        <button>Save to Library</button>
+      </form>
     </ul>
   <% }) %>
 

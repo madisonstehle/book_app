@@ -1,5 +1,5 @@
-
 DROP TABLE IF EXISTS libraries;
+
 CREATE TABLE libraries (
     id SERIAL PRIMARY KEY,
     author VARCHAR(255),
