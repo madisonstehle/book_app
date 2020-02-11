@@ -88,9 +88,9 @@ function createBookArray(request, response) {
 // CONSTRUCTOR
 function Book(bookData) {
   this.author = bookData.authors || 'no author available';
-  this.title = bookData.title;
+  this.title = bookData.title || 'no title available';
   this.isbn = bookData.industryIdentifiers ? bookData.industryIdentifiers[0].identifier : 'no ISBN available';
-  this.cover = bookData.imageLinks.thumbnail;
+  this.cover = bookData.imageLinks.thumbnail || 'no image available';
   this.description = bookData.description || 'no description available';
 }
 
