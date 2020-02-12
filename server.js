@@ -17,12 +17,32 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
 // ROUTES
+
+// home
 app.get('/', getBooks);
 
+// search page
 app.get('/searches/new', (request, response) => {response.render('pages/searches/new.ejs');});
 
+// search results
 app.post('/searches', createBookArray);
 
+// detail page
+app.get('/books/details/:id', (request, response) => {
+  console.log(request.params.id);
+  let id = request.params.id;
+
+  let SQL = 'SELECT * FROM libraries WHERE id = $1;';
+  let values = [id];
+
+  client.query(SQL, values)
+    .then( result => {
+      response.render('pages/books/details.ejs', { book: result.rows[0] })
+    })
+    .catch(() => { console.log('error')});
+})
+
+// save new book to database
 app.post('/books', (request, response) => {
   let { author, title, isbn, image_url, description} = request.body;
   let SQL = `INSERT INTO libraries(author, title, isbn, image_url, description, bookshelf) 
@@ -33,9 +53,10 @@ app.post('/books', (request, response) => {
   let values = [author, title, isbn, image_url, description, ''];
 
   client.query(SQL, values)
-    .then(response.redirect('/'))
+    .then(results => {response.redirect('/')})
     .catch(() => { console.log('error')});
 });
+
 
 
 // HELPER FUNCTIONS
@@ -43,7 +64,6 @@ function getBooks(request, response){
   let SQL = 'SELECT * FROM libraries;';
  return client.query(SQL)
   .then(results => {
-    console.log(results.rows);
     response.render('pages/index.ejs', {booklist: results.rows, bookCounts: results.rowCount})})
 
   .catch(() => { console.log('error')});

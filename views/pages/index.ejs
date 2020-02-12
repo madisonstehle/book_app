@@ -13,7 +13,7 @@
         <h1>Welcome to Book App</h1>
     </header>
 
-    <button><a href="./searches/new">Search for a New Book!</a></button>
+    <button><a href="/searches/new">Search for a New Book!</a></button>
     
     <h2>You have <%= bookCounts %> books saved!</h2>
 
@@ -22,7 +22,10 @@
             <li> <img src="<%= book.image_url %>" /> </li>
             <li id="title"> <%= book.title %> </li>
             <li id="author"> <%= book.author %> </li>
-            <!-- <li id="description"> <%= book.description %> </li> -->
+
+            <form method="get" action="pages/books/details/:id">
+                <button><a href="/books/details/<%=book.id%>">Details</a></button>
+            </form>
         </ul>
       <% }) %>
 

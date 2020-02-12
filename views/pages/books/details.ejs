@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <title>Details - Book App</title>
+</head>
+<body>
+    <header>
+        <h1>Details Page</h1>
+    </header>
+    
+      <ul>
+        <li> <img src="<%= book.image_url %>" /> </li>
+        <li id="title"> <%= book.title %> </li>
+        <li id="author"> <%= book.author %> </li>
+        <li id="description"> <%= book.description %> </li>
+        <li>ISBN: <%= book.isbn %> </li>
+        <li>Bookshelf: <%= book.bookshelf %></li>
+      </ul>
+
+      <button><a href="/searches/new">Search for a New Book!</a></button>
+      <button><a href="/">Home</a></button>
+
+</body>
+</html>
