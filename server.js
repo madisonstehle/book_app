@@ -53,7 +53,7 @@ app.post('/books', (request, response) => {
   let values = [author, title, isbn, image_url, description, ''];
 
   client.query(SQL, values)
-    .then(response.redirect('/'))
+    .then(results => {response.redirect('/')})
     .catch(() => { console.log('error')});
 });
 
