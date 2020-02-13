@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/styles.css" />
-    <title>Home - Book App</title>
-</head>
+<%- include('layout/head.ejs') %>
+
+
 <body>
     <header>
         <h1>Welcome to Book App</h1>
@@ -19,9 +14,10 @@
 
     <% booklist.forEach( book => { %>
         <ul>
+            
             <li> <img src="<%= book.image_url %>" /> </li>
-            <li id="title"> <%= book.title %> </li>
-            <li id="author"> <%= book.author %> </li>
+           <li id="title"> <%= book.title %> </li>
+           <li id="author"> <%= book.author %> </li>
 
             <form method="get" action="pages/books/details/:id">
                 <button><a href="/books/details/<%=book.id%>">Details</a></button>
