@@ -15,20 +15,34 @@
         <li>Bookshelf: <%= book.bookshelf %></li>
       </ul>
 
-      <form method="post" action="/books/details/<%= book.id  %>?_method=put">
-        <input type="text"name="author" value="<%=book.author %>" />
-        <input type="text"name="title" value="<%=book.title %>" />
-        <input type="text"name="image_url" value="<%=book.image_url %>" />
-        <input type="text"name="description" value="<%=book.description %>" />
-        <input type="text"name="isbn" value="<%=book.isbn %>" />
-        <input type="text"name="bookshelf" value="<%=book.bookshelf %>" />
-        <button type="submit"> Update</button>
+      <button id="updateButton">Update Details</button>
+
+      <form class="detailForm" method="post" action="/books/details/<%= book.id  %>?_method=put">
+        <input type="text" name="author" value="<%=book.author %>" />
+        <input type="text" name="title" value="<%=book.title %>" />
+        <input type="text" name="image_url" value="<%=book.image_url %>" />
+        <input type="text" name="description" value="<%=book.description %>" />
+        <input type="text" name="isbn" value="<%=book.isbn %>" />
+        <input type="text" name="bookshelf" value="<%=book.bookshelf %>" placeholder="bookshelf"/>
+        <button type="submit">Update Details</button>
       </form>
       
-      <form method="post" action="/books/details/<%= book.id %>?_method=delete">
+      <form class="detailForm" method="post" action="/books/details/<%= book.id %>?_method=delete">
         <button type="submit">Delete Book</button>
       </form>
       
+      <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous">
+      </script>
+      <script>
+        $("#updateButton").on('click', function clickfunction(){
+          $("form").show();
+          $("#updateButton").toggle(); 
+        })
+      </script>
+
       <%- include('../layout/nav.ejs') %>
     </body>
 </html>
