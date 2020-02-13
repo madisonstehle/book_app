@@ -1,7 +1,7 @@
 # book_app
 book app for Code 301n16
 
-## Features
+## Features Lab 11
 
 ### Number and name of feature: Feature 1
 
@@ -49,3 +49,25 @@ Start time: 6:00 pm
 Finish time: 6:30
 
 Actual time needed to complete: 30 minutes
+
+## Features for Lab 13
+
+### Number and name of feature: Feature 1
+
+Estimate of time needed to complete: 1 hour 30 minutes
+
+Start time: 7:27pm
+
+Finish time: 8:10pm
+
+Actual time needed to complete: 43 minutes
+
+### Number and name of feature: Feature 2
+
+Estimate of time needed to complete: 30 minutes
+
+Start time: 8:10pm
+
+Finish time: 8:31pm
+
+Actual time needed to complete: 21 minutes

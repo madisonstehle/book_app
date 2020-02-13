@@ -33,7 +33,6 @@ app.post('/searches', createBookArray);
 
 // detail page
 app.get('/books/details/:id', (request, response) => {
-  console.log(request.params.id);
   let id = request.params.id;
 
   let SQL = 'SELECT * FROM libraries WHERE id = $1;';
@@ -61,25 +60,36 @@ app.post('/books', (request, response) => {
     .catch(() => { console.log('error')});
 });
 
-// update rout
+// update route
 app.put('/books/details/:id', (request, response) =>{
   let id = request.params.id;
-  let SQL = 'UPDATE libraries SET author=$1, title=$2, isbn=$3, image_url=$4, description=$5, bookshelf=$6 WHERE id=$7;';
   let author = request.body.author;
   let title = request.body.title;
   let isbn = request.body.isbn;
   let image_url = request.body.image_url;
   let description = request.body.description;
   let bookshelf = request.body.bookshelf;
+  
+  let SQL = 'UPDATE libraries SET author=$1, title=$2, isbn=$3, image_url=$4, description=$5, bookshelf=$6 WHERE id=$7;';
   let values = [author, title, isbn, image_url, description, bookshelf, id];
+  
+  client.query(SQL, values)
+    .then(() =>{
+      response.redirect(`/books/details/${id}`);
+    })
+    .catch(() => { console.log('reeor')});
+})
+
+// delete route
+app.delete('/books/details/:id', (request, response) => {
+  let id = request.params.id;
+
+  let SQL = 'DELETE FROM libraries WHERE id=$1'
+  let values = [id];
 
   client.query(SQL, values)
-  .then(() =>{
-    response.redirect(`/books/details/${id}`);
-
-  })
-  .catch(() => { console.log('reeor')});
-
+    .then(() => {response.redirect('/')})
+    .catch(() => { console.log('error') })
 })
 
 
