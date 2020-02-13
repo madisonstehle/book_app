@@ -17,6 +17,7 @@ h2 {
 ul {
   background-color: #CBF3D2;
   width: 60%;
+  min-width: 150px;
   margin: auto;
   margin-bottom: 20px;
   outline: medium solid black;
@@ -43,6 +44,7 @@ img {
 }
 
 /* FORM */
+
 input {
   margin: 5px;
   padding: 5px;
@@ -105,4 +107,25 @@ a:hover {
 
 .invisible {
   display: none;
+}
+
+.detailForm {
+  background-color: #CBF3D2;
+  width: 60%;
+  min-width: 150px;
+  margin: auto;
+  display: none;
+}
+
+.detailForm input {
+  width: 80%;
+  margin: 10px;
+  overflow: scroll;
+}
+
+.detailForm 
+
+.detailForm button {
+  margin: 10px;
+  display: inline-block;
 }
